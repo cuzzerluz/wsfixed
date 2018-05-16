@@ -13,5 +13,5 @@ def main_info():
 	print "\t+---**---==" + ston + "Version :" + wcolors.color.RED + "3.0.0" + wcolors.color.ENDC
 	print "\t+---**---==" + ston + "Codename :" + wcolors.color.RED + "Katana" + wcolors.color.ENDC
 	print "\t+---**---==" + ston + "Available Modules : " + wcolors.color.GREEN + "20" + wcolors.color.ENDC
-	print "\t\t--=" + ston + "Update Date : [" + wcolors.color.RED + "r3.0.0-000 20.9.2014" + wcolors.color.ENDC + "]"
+	print "\t\t--=" + ston + "Update Date : [" + wcolors.color.RED + "r3.0.0-000 16.5.2018" + wcolors.color.ENDC + "]"
 	print "\n\n"
