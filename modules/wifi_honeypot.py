@@ -76,22 +76,24 @@ def wifi_honeypot():
             print ""
             wifi_honeypot()
         elif com[0:3] == 'run':
+            print options[6]
             comm1= "xterm -e airbase-ng -a %s -c %s --essid %s %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
-            comm2= "xterm -e airbase-ng -a %s -c %d --essid %s -W 1 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
-            comm3= "xterm -e airbase-ng -a %s -c %d --essid %s -W 1 -z 2 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
-            comm4= "xterm -e airbase-ng -a %s -c %d --essid %s -W 1 -Z 4 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
+            comm2= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
+            comm3= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 -z 2 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
+            comm4= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 -Z 4 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
             monit_mod_start= "airmon-ng start %s" % (options[1])
             print(wcolors.color.GREEN+"[*]Enable monitor mod on your interface [%s] ..."+wcolors.color.ENDC)% (options[0]),
             subprocess.Popen(monit_mod_start, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
             print(wcolors.color.GREEN+" [OK]"+wcolors.color.ENDC)
             print(wcolors.color.GREEN+"[*]Creating Fake Access Point ..."+wcolors.color.ENDC),
-            if options[6]==1:
+            if options[6]=="1":
                 os.system(comm1)
-            elif options[6]==2:
+                print"Hello"
+            elif options[6]=="2":
                 os.system(comm2)
-            elif options[6]==3:
+            elif options[6]=="3":
                 os.system(comm3)
-            elif options[6]==4:
+            elif options[6]=="4":
                 os.system(comm4)
             else:
                 print(wcolors.color.RED+"[!]Error : Encryption ID not Found!"+wcolors.color.ENDC)
