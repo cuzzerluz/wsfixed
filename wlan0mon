@@ -1,1 +1,8 @@
-Interface wlan0mon: 
+23:17:05  Created tap interface at2
+23:17:05  Trying to set MTU on at2 to 1500
+23:17:05  Access Point with BSSID EE:F2:F1:9E:BF:99 started.
+23:17:19  Client 40:4E:36:86:9F:1F associated (u23:17:19  Client 40:4E:36:86:9F:23:17:57  Client 40:4E:36:86:9F:1F associated (unencrypted) to ESSID: "FreeNet"
+23:18:36  Client 40:4E:36:86:9F:1F associated (unencrypted) to ESSID: "FreeNet"
+23:19:14  Client 40:4E:36:86:9F:1F associated (unencrypted) to ESSID: "FreeNet"
+23:19:52  Client 40:4E:36:86:9F:1F associated (unencrypted) to ESSID: "FreeNet"
+1F associated (unencrypted) to ESSID: "FreeNet"
