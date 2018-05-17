@@ -9,7 +9,7 @@ from time import sleep
 from core import help
 from core import wcolors
 
-options = ["wlan0", "FreeNet", "9", "a1:a2:a3:a4:a5:a6", "/home/wh_logs.txt", "mon0", "1"]
+options = ["wlan0mon", "FreeNet", "9", "a1:a2:a3:a4:a5:a6", "/home/wh_logs.txt", "mon0", "1"]
 
 def wifi_honeypot():
     try:
@@ -20,7 +20,7 @@ def wifi_honeypot():
         com = raw_input(line_1)
         com = com.lower()
         if com[0:13] == 'set interface':
-            options[0] = com[14:20]
+            options[0] = com[14:25]
             print "INTERFACE => ", options[0]
             wifi_honeypot()
         elif com[0:9] == 'set essid':
@@ -40,7 +40,7 @@ def wifi_honeypot():
             print "OUTPUT => ", options[4]
             wifi_honeypot()
         elif com[0:7] == 'set mon':
-            options[5] = com[8:12]
+            options[5] = com[8:16]
             print "MON => ", options[5]
             wifi_honeypot()
         elif com[0:11] =='set encrypt':
@@ -77,18 +77,20 @@ def wifi_honeypot():
             wifi_honeypot()
         elif com[0:3] == 'run':
             print options[6]
+	    comm0= "airbase-ng -a %s -c %s --essid %s -i %s %s > %s &  " % (options[3], options[2], options[1], options[0], options[5],options[5]) 
             comm1= "xterm -e airbase-ng -a %s -c %s --essid %s %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
             comm2= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
             comm3= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 -z 2 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
             comm4= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 -Z 4 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
-            monit_mod_start= "airmon-ng start %s" % (options[1])
-            print(wcolors.color.GREEN+"[*]Enable monitor mod on your interface [%s] ..."+wcolors.color.ENDC)% (options[0]),
+            print "Before assign"
+            monit_mod_start= "sudo iwconfig %s mode monitor" % (options[0])
+	    print(wcolors.color.GREEN+"[*]Enable monitor mod on your interface [%s] ..."+wcolors.color.ENDC)% (options[0]),
             subprocess.Popen(monit_mod_start, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
+            print "after assign"
             print(wcolors.color.GREEN+" [OK]"+wcolors.color.ENDC)
             print(wcolors.color.GREEN+"[*]Creating Fake Access Point ..."+wcolors.color.ENDC),
             if options[6]=="1":
-                os.system(comm1)
-                print"Hello"
+                os.system(comm0)
             elif options[6]=="2":
                 os.system(comm2)
             elif options[6]=="3":
