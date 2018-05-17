@@ -9,7 +9,7 @@ from time import sleep
 from core import help
 from core import wcolors
 
-options = ["wlan0mon", "FreeNet", "9", "a1:a2:a3:a4:a5:a6", "/home/wh_logs.txt", "mon0", "1"]
+options = ["wlan0", "FreeNet", "9", "a1:a2:a3:a4:a5:a6", "/home/wh_logs.txt", "mon0", "1"]
 
 def wifi_honeypot():
     try:
@@ -82,11 +82,11 @@ def wifi_honeypot():
             comm2= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
             comm3= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 -z 2 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
             comm4= "xterm -e airbase-ng -a %s -c %s --essid %s -W 1 -Z 4 %s > %s &" % (options[3], options[2], options[1], options[5], options[4])
-            print "Before assign"
             monit_mod_start= "sudo iwconfig %s mode monitor" % (options[0])
 	    print(wcolors.color.GREEN+"[*]Enable monitor mod on your interface [%s] ..."+wcolors.color.ENDC)% (options[0]),
-            subprocess.Popen(monit_mod_start, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
-            print "after assign"
+            #subprocess.Popen(monit_mod_start, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).wait()
+            os.system(monit_mod_start)
+	    sleep(5)
             print(wcolors.color.GREEN+" [OK]"+wcolors.color.ENDC)
             print(wcolors.color.GREEN+"[*]Creating Fake Access Point ..."+wcolors.color.ENDC),
             if options[6]=="1":
